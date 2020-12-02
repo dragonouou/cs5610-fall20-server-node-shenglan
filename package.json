@@ -1,0 +1,14 @@
+{
+  "name": "cs5610-fall20-server-node-shenglan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shenglan Ou",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
