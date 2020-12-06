@@ -1,8 +1,22 @@
 const express = require("express")
 const app = express()
-// const quizService = require("./services/quiz.service.server")
-// quizService(app)
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/whiteboard', {useNewUrlParser: true});
+// const quizSchema = mongoose.Schema({
+//     name:String
+// },{collection:"quizzes"})
+//
+// const quizModel = mongoose.model("QuizModel",quizSchema)
+// quizModel.find()
+//     .then(quizzes => console.log(quizzes))
+
+
+const bodyParser = require('body-parser')
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(function (req,res,next) {
     res.header('Access-Control-Allow-Origin',"*");
@@ -13,16 +27,10 @@ app.use(function (req,res,next) {
     next();
 })
 
-require("./controllers/question.controller.server")(app)
+
+require("./controllers/questions.controller.server")(app)
 require("./controllers/quizzes.controller.server")(app)
-// app.listen(3000)
+require("./controllers/quiz-attempts.controllers.server")(app)
+app.listen(3000)
 
-
-// const express = require('express');
-// const path = require('path');
-// // const app = express();
-// app.use(express.static(__dirname + '/dist/cs5610-fall20-server-node-shenglan'));
-// app.get('/*', function(req,res) {
-//     res.sendFile(path.join(__dirname+
-//         '/dist/cs5610-fall20-client-angular-shenglan/index.html'));});
-app.listen(process.env.PORT || 3000);
+// app.listen(process.env.PORT || 3000);
