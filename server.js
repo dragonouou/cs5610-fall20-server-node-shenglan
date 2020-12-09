@@ -2,14 +2,9 @@ const express = require("express")
 const app = express()
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/whiteboard', {useNewUrlParser: true});
-// const quizSchema = mongoose.Schema({
-//     name:String
-// },{collection:"quizzes"})
-//
-// const quizModel = mongoose.model("QuizModel",quizSchema)
-// quizModel.find()
-//     .then(quizzes => console.log(quizzes))
+// mongoose.connect('mongodb://localhost/whiteboard', {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://cs5610:cs5610@quizzes.xqkn5.mongodb.net/whiteboard?retryWrites=true&w=majority",
+    {useNewUrlParser: true});
 
 
 const bodyParser = require('body-parser')
@@ -27,10 +22,9 @@ app.use(function (req,res,next) {
     next();
 })
 
-
 require("./controllers/questions.controller.server")(app)
 require("./controllers/quizzes.controller.server")(app)
 require("./controllers/quiz-attempts.controllers.server")(app)
-app.listen(3000)
+// app.listen(3000)
 
-// app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000);
